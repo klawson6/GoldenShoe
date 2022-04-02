@@ -39,7 +39,7 @@ namespace GoldenShoeAPI.Repositories
 
 		public Shoe FindByID(Guid id)
 		{
-			return _context.Shoes.First(s => s.Id == id);
+			return _context.Shoes.First(s => s.ShoeId == id);
 		}
 
 		public void Update(Shoe entity)

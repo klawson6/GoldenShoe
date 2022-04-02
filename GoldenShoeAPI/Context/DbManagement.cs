@@ -16,9 +16,9 @@ namespace GoldenShoeAPI.Context
 		private void InitialiseDatabase()
 		{
 			_context.Database.EnsureCreated();
-			_context.Shoes.Add(new Shoe { Id = Guid.NewGuid(), Name = "AirForce", Brand = "Nike", Description = "Really popular.", Price = 79.99, Type = "Trainers" });
-			_context.Shoes.Add(new Shoe { Id = Guid.NewGuid(), Name = "700", Brand = "New Balance", Description = "I like.", Price = 59.99, Type = "Trainers" });
-			_context.SaveChanges();
+			//_context.Shoes.Add(new Shoe { ShoeId = Guid.NewGuid(), Name = "AirForce", Brand = "Nike", Description = "Really popular.", Price = 79.99, StyleId = "Trainers" });
+			//_context.Shoes.Add(new Shoe { ShoeId = Guid.NewGuid(), Name = "700", Brand = "New Balance", Description = "I like.", Price = 59.99, StyleId = "Trainers" });
+			//_context.SaveChanges();
 		}
 
 		private void TeardownDatabase()
