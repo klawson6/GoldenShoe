@@ -37,7 +37,7 @@ namespace GoldenShoeAPI.Repositories
 			return _context.Shoes.Where(s => expression(s));
 		}
 
-		public Shoe FindByID(Guid id)
+		public Shoe FindByID(int id)
 		{
 			return _context.Shoes.First(s => s.ShoeId == id);
 		}

@@ -4,12 +4,11 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace GoldenShoeAPI.Context
 {
-	[Table("Styles")]
-	public class Style
+	[Table("Brands")]
+	public class Brand
 	{
 		[Key]
-		public int StyleId { get; set; }
+		public int BrandId { get; set; }
 		public string Name { get; set; }
-		public string Description { get; set; }
 	}
 }

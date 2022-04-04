@@ -8,7 +8,7 @@ namespace GoldenShoeAPI.Context
 	public class Colour
 	{
 		[Key]
-		public Guid ColourId { get; set; }
+		public int ColourId { get; set; }
 		public string Name { get; set; }
 	}
 }

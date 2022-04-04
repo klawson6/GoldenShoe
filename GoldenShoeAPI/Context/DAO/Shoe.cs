@@ -8,11 +8,11 @@ namespace GoldenShoeAPI.Context
 	public class Shoe
 	{
 		[Key]
-		public Guid ShoeId { get; set; }
+		public int ShoeId { get; set; }
 		public string Name { get; set; }
-		public string Brand { get; set; }
+		public Brand Brand { get; set; }
 		public string Description { get; set; }
-		public Guid StyleId { get; set; }
+		public Style Style { get; set; }
 		public double Price { get; set; }
 	}
 }

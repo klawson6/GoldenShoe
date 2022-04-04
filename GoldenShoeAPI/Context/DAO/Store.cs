@@ -8,7 +8,7 @@ namespace GoldenShoeAPI.Context
 	public class Store
 	{
 		[Key]
-		public Guid StoreId { get; set; }
+		public int StoreId { get; set; }
 		public string Name { get; set; }
 		public string Address { get; set; }
 		public string City { get; set; }

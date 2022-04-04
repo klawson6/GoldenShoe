@@ -8,9 +8,9 @@ namespace GoldenShoeAPI.Context
 	public class ShoeColourSizeStock
 	{
 		[Key]
-		public Guid ShoeColourSizeStockId { get; set; }
+		public int ShoeColourSizeStockId { get; set; }
 		public ShoeColourSize ShoeColourSize { get; set; }
-		public Store StoreId { get; set; }
-		public int quantity { get; set; }
+		public Store Store { get; set; }
+		public int Quantity { get; set; }
 	}
 }

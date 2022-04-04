@@ -8,7 +8,8 @@ namespace GoldenShoeAPI.Context
 	public class ShoeSize
 	{
 		[Key]
-		public Guid SizeId { get; set; }
-		public int Size { get; set; }
+		public int SizeId { get; set; }
+		public double Size { get; set; }
+		public string Region { get; set; }
 	}
 }
