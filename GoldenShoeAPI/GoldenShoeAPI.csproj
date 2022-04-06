@@ -8,6 +8,7 @@
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="5.0.15" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="5.0.15" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="5.6.3" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Proxies" Version="5.0.15" />
   </ItemGroup>
 
   <ItemGroup>
@@ -16,6 +17,7 @@
     <None Remove="DTO\" />
     <None Remove="Repositories\" />
     <None Remove="Factories\" />
+    <None Remove="Microsoft.EntityFrameworkCore.Proxies" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Domain\" />

@@ -30,7 +30,9 @@ namespace GoldenShoeAPI
 			{
 				c.SwaggerDoc("v1", new OpenApiInfo { Title = "GoldenShoeAPI", Version = "v1" });
 			});
-			services.AddDbContext<GoldenShoeContext>(options => options.UseSqlite(@"Data Source=GoldenShoe.db"));
+			services.AddDbContext<GoldenShoeContext>(options => options
+				.UseLazyLoadingProxies()
+				.UseSqlite(@"Data Source=GoldenShoe.db"));
             services.AddTransient<IShoeRepository, ShoeRepository>();
 			services.AddTransient<IShoeColourRepository, ShoeColourRepository>();
 			services.AddTransient<IShoeColourSizeRepository, ShoeColourSizeRepository>();
