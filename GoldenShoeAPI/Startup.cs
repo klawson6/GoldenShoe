@@ -1,4 +1,7 @@
 using GoldenShoeAPI.Context;
+using GoldenShoeAPI.DTO;
+using GoldenShoeAPI.Factories;
+using GoldenShoeAPI.Interfaces;
 using GoldenShoeAPI.Repositories;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -28,8 +31,19 @@ namespace GoldenShoeAPI
 				c.SwaggerDoc("v1", new OpenApiInfo { Title = "GoldenShoeAPI", Version = "v1" });
 			});
 			services.AddDbContext<GoldenShoeContext>(options => options.UseSqlite(@"Data Source=GoldenShoe.db"));
-			services.AddTransient<IShoeRepository, ShoeRepository>();
+            services.AddTransient<IShoeRepository, ShoeRepository>();
+			services.AddTransient<IShoeColourRepository, ShoeColourRepository>();
+			services.AddTransient<IShoeColourSizeRepository, ShoeColourSizeRepository>();
+			services.AddTransient<IBrandRepository, BrandRepository>();
+			services.AddTransient<IColourRepository, ColourRepository>();
+			services.AddTransient<IShoeSizeRepository, ShoeSizeRepository>();
+			services.AddTransient<IStoreRepository, StoreRepository>();
+			services.AddTransient<IStyleRepository, StyleRepository>();
+			services.AddTransient<IShoeColourSizeStockRepository, ShoeColourSizeStockRepository>();
+			services.AddTransient<IStyleRepository, StyleRepository>();
+			services.AddTransient<IShoeDTOFactory, ShoeDTOFactory>();
 			services.AddTransient<DbManagement>();
+			services.AddTransient<IShoeDTO, ShoeDTO>();
 		}
 
 		// This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

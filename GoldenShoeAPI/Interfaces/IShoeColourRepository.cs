@@ -5,5 +5,5 @@ using GoldenShoeAPI.Domain;
 
 namespace GoldenShoeAPI.Interfaces
 {
-	public interface IShoeRepository: IRepository<Shoe, int> { }
+	public interface IShoeColourRepository: IRepository<ShoeColour, int> { }
 }

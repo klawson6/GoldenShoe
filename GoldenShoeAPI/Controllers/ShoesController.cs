@@ -1,4 +1,7 @@
 ﻿using GoldenShoeAPI.Context;
+using GoldenShoeAPI.Domain;
+using GoldenShoeAPI.DTO;
+using GoldenShoeAPI.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 
@@ -8,26 +11,27 @@ namespace GoldenShoeAPI.Controllers
 	[Route("shoes")]
 	public class ShoesController : ControllerBase
 	{
-		private readonly IShoeRepository _repository;
+        private readonly IShoeRepository _shoeRepository;
+		private readonly IShoeDTOFactory _shoeDTOFactory;
 
-		public ShoesController(IShoeRepository repository)
-		{
-			_repository = repository;
-		}
+        public ShoesController(
+			IShoeRepository shoeRepository,
+			IShoeDTOFactory shoeDTOFactory)
+        {
+            _shoeRepository = shoeRepository;
+            _shoeDTOFactory = shoeDTOFactory;
+        }
 
-		[HttpGet]
-		public IEnumerable<Shoe> Get()
+        [HttpGet]
+		public IEnumerable<IShoeDTO> Get()
 		{
-			return _repository.FindAll();
-		}
-
-		[HttpPost]
-		public void Post(IEnumerable<Shoe> shoes)
-		{
-			foreach(Shoe shoe in shoes)
-			{
-				_repository.Create(shoe);
-			}
+			IEnumerable<Shoe> shoes = _shoeRepository.FindAll();
+			IList<IShoeDTO> shoeInfo = new List<IShoeDTO>();
+			foreach (Shoe shoe in shoes)
+            {
+				shoeInfo.Add(_shoeDTOFactory.Create(shoe));
+            }
+			return shoeInfo;
 		}
 	}
 }

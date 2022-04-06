@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using GoldenShoeAPI.Domain;
+using Microsoft.EntityFrameworkCore;
 
 namespace GoldenShoeAPI.Context
 {

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq.Expressions;
 
-namespace GoldenShoeAPI
+namespace GoldenShoeAPI.Interfaces
 {
 	public interface IRepository<T, K>
 	{
