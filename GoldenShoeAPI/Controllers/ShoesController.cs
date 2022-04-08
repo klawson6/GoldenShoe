@@ -4,34 +4,69 @@ using GoldenShoeAPI.DTO;
 using GoldenShoeAPI.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace GoldenShoeAPI.Controllers
 {
 	[ApiController]
-	[Route("shoes")]
-	public class ShoesController : ControllerBase
+    [Route("api")]
+    public class ShoesController : ControllerBase
 	{
         private readonly IShoeRepository _shoeRepository;
-		private readonly IShoeDTOFactory _shoeDTOFactory;
+        private readonly IShoeColourRepository _shoeColourRepository;
+        private readonly IShoeColourSizeRepository _shoeColourSizeRepository;
+        private readonly IShoeDTOFactory _shoeDTOFactory;
 
         public ShoesController(
 			IShoeRepository shoeRepository,
-			IShoeDTOFactory shoeDTOFactory)
+            IShoeColourRepository shoeColourRepository,
+            IShoeColourSizeRepository shoeColourSizeRepository,
+            IShoeDTOFactory shoeDTOFactory)
         {
             _shoeRepository = shoeRepository;
+            _shoeColourRepository = shoeColourRepository;
+            _shoeColourSizeRepository = shoeColourSizeRepository;
             _shoeDTOFactory = shoeDTOFactory;
         }
 
+        #region Shoes
+
         [HttpGet]
-		public IEnumerable<IShoeDTO> Get()
-		{
-			IEnumerable<Shoe> shoes = _shoeRepository.FindAll();
-			IList<IShoeDTO> shoeInfo = new List<IShoeDTO>();
-			foreach (Shoe shoe in shoes)
-            {
-				shoeInfo.Add(_shoeDTOFactory.Create(shoe));
-            }
-			return shoeInfo;
-		}
-	}
+        [Route("shoes/")]
+        public IEnumerable<IShoeDTO> GetShoes()
+        {
+            return _shoeRepository.FindAll().Select(s => _shoeDTOFactory.Create(s));
+        }
+
+        [HttpGet]
+        [Route("shoes/{shoeId}")]
+        public IShoeDTO GetShoe(int shoeId)
+        {
+            return _shoeDTOFactory.Create(_shoeRepository.FindByID(shoeId));
+        }
+
+        #endregion
+
+        #region Colours
+
+        [HttpGet]
+        [Route("shoes/{shoeId}/colours")]
+        public IEnumerable<Colour> GetShoeColours(int shoeId)
+        {
+            return _shoeColourRepository.FindByCondition(s => s.Shoe.ShoeId.Equals(shoeId)).Select(s => s.Colour);
+        }
+
+        #endregion
+
+        #region Sizes
+
+        [HttpGet]
+        [Route("shoes/{shoeId}/sizes")]
+        public IEnumerable<ShoeSize> GetShoeSizes(int shoeId)
+        {
+            return _shoeColourSizeRepository.FindByCondition(s => s.ShoeColour.Shoe.ShoeId.Equals(shoeId)).Select(s => s.ShoeSize).Distinct();
+        }
+
+        #endregion
+    }
 }

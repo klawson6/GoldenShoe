@@ -29,6 +29,8 @@ namespace GoldenShoeAPI.Factories
 
         public IShoeDTO Create(Shoe shoe)
         {
+            if (shoe == null) return null;
+
             IShoeDTO dto = ActivatorUtilities.GetServiceOrCreateInstance<IShoeDTO>(_serviceProvider);
             dto.ShoeId = shoe.ShoeId;
             dto.Name = shoe.Name;
